@@ -9,7 +9,7 @@ import com.example.kitsugithub.base.BaseDiffUtilItemCallback
 import com.example.kitsugithub.databinding.ItemKitsuBinding
 import com.example.kitsugithub.models.DataItem
 
-class AnimeAdapter : PagingDataAdapter<DataItem, AnimeAdapter.ViewHolder>(
+class MangaAdapter : PagingDataAdapter<DataItem, MangaAdapter.ViewHolder>(
     BaseDiffUtilItemCallback()
 ) {
     inner class ViewHolder(private val binding: ItemKitsuBinding) :
@@ -24,11 +24,7 @@ class AnimeAdapter : PagingDataAdapter<DataItem, AnimeAdapter.ViewHolder>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemKitsuBinding.inflate(
-                LayoutInflater.from(
-                    parent.context
-                ), parent, false
-            )
+            ItemKitsuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
