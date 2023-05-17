@@ -1,4 +1,4 @@
-package com.example.kitsugithub.ui.fragments
+package com.example.kitsugithub.ui.fragments.anime
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope

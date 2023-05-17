@@ -1,4 +1,4 @@
-package com.example.kitsugithub.ui.fragments
+package com.example.kitsugithub.ui.fragments.anime
 
 import com.example.kitsugithub.base.BaseViewModel
 import com.example.kitsugithub.repositories.AnimeRepository

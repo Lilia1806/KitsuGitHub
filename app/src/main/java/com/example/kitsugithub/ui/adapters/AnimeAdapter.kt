@@ -3,29 +3,28 @@ package com.example.kitsugithub.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kitsugithub.base.BaseDiffUtilItemCallback
-import com.example.kitsugithub.databinding.ItemAnimeBinding
+import com.example.kitsugithub.databinding.ItemKitsuBinding
 import com.example.kitsugithub.models.DataItem
 
 class AnimeAdapter : PagingDataAdapter<DataItem, AnimeAdapter.ViewHolder>(
     BaseDiffUtilItemCallback()
 ) {
-    inner class ViewHolder(private val binding: ItemAnimeBinding) :
+    inner class ViewHolder(private val binding: ItemKitsuBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(attributes: DataItem) {
-            binding.tvAnime.text = attributes.attributes.titles.enJp
-            Glide.with(binding.itemImageAnime).load(attributes.attributes.posterImage.original)
-                .into(binding.itemImageAnime)
+            binding.tvKitsu.text = attributes.attributes.titles.enJp
+            Glide.with(binding.itemImageKitsu).load(attributes.attributes.posterImage.original)
+                .into(binding.itemImageKitsu)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemAnimeBinding.inflate(
+            ItemKitsuBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
