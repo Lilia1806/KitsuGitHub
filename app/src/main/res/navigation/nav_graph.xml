@@ -10,4 +10,6 @@
         android:name="com.example.kitsugithub.ui.fragments.AnimeFragment"
         android:label="fragment_anime"
         tools:layout="@layout/fragment_anime" />
+    android:id="@+id/nav_graph.xml">
+
 </navigation>
