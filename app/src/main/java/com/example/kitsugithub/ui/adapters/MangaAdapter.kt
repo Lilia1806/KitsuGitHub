@@ -9,7 +9,8 @@ import com.example.kitsugithub.base.BaseDiffUtilItemCallback
 import com.example.kitsugithub.databinding.ItemKitsuBinding
 import com.example.kitsugithub.models.DataItem
 
-class MangaAdapter : ListAdapter<DataItem, MangaAdapter.ViewHolder>(
+class MangaAdapter(val onItemClick: (id: String) -> Unit)
+    : ListAdapter<DataItem, MangaAdapter.ViewHolder>(
     BaseDiffUtilItemCallback()
 ) {
     inner class ViewHolder(private val binding: ItemKitsuBinding) :
@@ -18,6 +19,11 @@ class MangaAdapter : ListAdapter<DataItem, MangaAdapter.ViewHolder>(
         fun onBind(attributes: DataItem) {
             binding.tvKitsu.text = attributes.attributes.titles.enJp
             binding.itemImageKitsu.setImage(attributes.attributes.posterImage.original)
+        }
+        init {
+            itemView.setOnClickListener {
+                getItem(absoluteAdapterPosition)?.let { it1 -> onItemClick(it1.id) }
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MangaAdapter.ViewHolder {

@@ -10,4 +10,5 @@ class MangaDetailViewModel @Inject constructor (
     private val mangaRepository: MangaRepository
 ) : BaseViewModel() {
 
+    fun fetchMangaDetail(id: String) = mangaRepository.fitchDetailManga(id)
 }
