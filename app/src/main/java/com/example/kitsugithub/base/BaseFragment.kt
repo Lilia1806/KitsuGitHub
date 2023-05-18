@@ -22,11 +22,9 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(@LayoutRes lay
 
     protected open fun initialize() {}
 
-    protected open fun setupListeners() {}
+    protected open fun setupListeners(){}
 
     protected open fun setupObserves() {}
 
     protected open fun setupSubscribes() {}
-
-
 }

@@ -2,14 +2,14 @@ package com.example.kitsugithub.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.kitsugithub.extensions.setImage
 import com.example.kitsugithub.base.BaseDiffUtilItemCallback
 import com.example.kitsugithub.databinding.ItemKitsuBinding
 import com.example.kitsugithub.models.DataItem
 
-class AnimeAdapter : PagingDataAdapter<DataItem, AnimeAdapter.ViewHolder>(
+class AnimeAdapter : ListAdapter<DataItem, AnimeAdapter.ViewHolder>(
     BaseDiffUtilItemCallback()
 ) {
     inner class ViewHolder(private val binding: ItemKitsuBinding) :
@@ -17,8 +17,7 @@ class AnimeAdapter : PagingDataAdapter<DataItem, AnimeAdapter.ViewHolder>(
 
         fun onBind(attributes: DataItem) {
             binding.tvKitsu.text = attributes.attributes.titles.enJp
-            Glide.with(binding.itemImageKitsu).load(attributes.attributes.posterImage.original)
-                .into(binding.itemImageKitsu)
+            binding.itemImageKitsu.setImage(attributes.attributes.posterImage.original)
         }
     }
 

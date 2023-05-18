@@ -1,7 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-
+    //Safe args
+    id ("androidx.navigation.safeargs.kotlin")
     //Kapt
     id("kotlin-kapt")
 
@@ -112,6 +113,9 @@ dependencies {
     val hilt_version = "2.45"
     implementation("com.google.dagger:hilt-android:$hilt_version")
     kapt("com.google.dagger:hilt-compiler:$hilt_version")
+
+    //view pager
+    implementation ("androidx.viewpager2:viewpager2:1.1.0-beta01")
 
     // paging 3
     val paging_version = "3.1.1"
