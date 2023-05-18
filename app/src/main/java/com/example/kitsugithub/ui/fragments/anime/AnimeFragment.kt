@@ -2,12 +2,14 @@ package com.example.kitsugithub.ui.fragments.anime
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.kitsugithub.R
 import com.example.kitsugithub.base.BaseFragment
 import com.example.kitsugithub.databinding.FragmentAnimeBinding
 import com.example.kitsugithub.ui.adapters.AnimeAdapter
+import com.example.kitsugithub.ui.fragments.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -17,7 +19,7 @@ class AnimeFragment :
 
     override val binding by viewBinding(FragmentAnimeBinding::bind)
     override val viewModel: AnimeViewModel by viewModels()
-    private var animeAdapter = AnimeAdapter()
+    private var animeAdapter = AnimeAdapter(this :: onItemClick)
 
     override fun initialize() {
         binding.rvAnime.apply {
@@ -27,10 +29,22 @@ class AnimeFragment :
     }
 
     override fun setupSubscribes() {
-        lifecycleScope.launch {
-            viewModel.fetchAnime().observe(viewLifecycleOwner) {
+        subscribeToFetchAnime()
+    }
+
+    private fun subscribeToFetchAnime() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.fetchAnime().collect{
                 animeAdapter.submitList(it.data?.data)
             }
         }
+    }
+
+    private fun onItemClick(id: String) {
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToAnimeDetailFragment(
+                id
+            )
+        )
     }
 }
