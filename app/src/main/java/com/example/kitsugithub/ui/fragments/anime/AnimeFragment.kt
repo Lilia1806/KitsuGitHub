@@ -2,7 +2,6 @@ package com.example.kitsugithub.ui.fragments.anime
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.kitsugithub.R
@@ -28,9 +27,9 @@ class AnimeFragment :
     }
 
     override fun setupSubscribes() {
-        viewModel.fetchAnime().observe(viewLifecycleOwner) {
-            lifecycleScope.launch {
-                animeAdapter.submitData(it)
+        lifecycleScope.launch {
+            viewModel.fetchAnime().observe(viewLifecycleOwner) {
+                animeAdapter.submitList(it.data?.data)
             }
         }
     }

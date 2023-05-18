@@ -2,14 +2,14 @@ package com.example.kitsugithub.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.kitsugithub.extensions.setImage
 import com.example.kitsugithub.base.BaseDiffUtilItemCallback
 import com.example.kitsugithub.databinding.ItemKitsuBinding
 import com.example.kitsugithub.models.DataItem
 
-class MangaAdapter : PagingDataAdapter<DataItem, MangaAdapter.ViewHolder>(
+class MangaAdapter : ListAdapter<DataItem, MangaAdapter.ViewHolder>(
     BaseDiffUtilItemCallback()
 ) {
     inner class ViewHolder(private val binding: ItemKitsuBinding) :
@@ -17,17 +17,18 @@ class MangaAdapter : PagingDataAdapter<DataItem, MangaAdapter.ViewHolder>(
 
         fun onBind(attributes: DataItem) {
             binding.tvKitsu.text = attributes.attributes.titles.enJp
-            Glide.with(binding.itemImageKitsu).load(attributes.attributes.posterImage.original)
-                .into(binding.itemImageKitsu)
+            binding.itemImageKitsu.setImage(attributes.attributes.posterImage.original)
         }
     }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MangaAdapter.ViewHolder {
         return ViewHolder(
-            ItemKitsuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemKitsuBinding.inflate(
+                LayoutInflater.from(
+                    parent.context
+                ), parent, false
+            )
         )
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { holder.onBind(it) }
     }

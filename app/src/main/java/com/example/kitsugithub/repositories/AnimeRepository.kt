@@ -6,16 +6,19 @@ import androidx.paging.liveData
 import com.example.kitsugithub.base.BaseRepository
 import com.example.kitsugithub.models.DataItem
 import com.example.kitsugithub.remote.apiservices.AnimeApiService
-import com.example.kitsugithub.repositories.pagingsources.AnimePagingSource
 import javax.inject.Inject
 
 class AnimeRepository @Inject constructor(
     private val animeApiService: AnimeApiService
 ) : BaseRepository() {
 
-    fun fetchAnime() = Pager(
-        PagingConfig(pageSize = 20, initialLoadSize = 10)
-    ) {
-        AnimePagingSource(animeApiService)
-    }.liveData
+    fun fetchAnime() = doRequest {
+        animeApiService.fetchAnime()
+    }
+
+//    fun fetchAnime() = Pager(
+//        PagingConfig(pageSize = 20, initialLoadSize = 10)
+//    ) {
+//        AnimePagingSource(animeApiService)
+//    }.liveData
 }

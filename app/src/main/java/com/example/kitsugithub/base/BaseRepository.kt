@@ -8,7 +8,6 @@ abstract class BaseRepository {
 
     fun <T> doRequest(result: suspend () -> T) = liveData {
         emit(Resource.Loading())
-
         try {
             emit(Resource.Success(result()))
         } catch (exception: IOException) {
